@@ -3,35 +3,9 @@
 #include <string.h>
 #include <stdlib.h>
 int main() {
-	int N, cnt = 0, i = 0;
-	scanf("%d", &N);
-	while (N != 0) {
-		if (i > 2000) break;
-		else {
-			if (N % 5 == 0) {
-				cnt = N / 5;
-				N %= 5;
-			}
-			else if (N % 5 == 1) {
-				N -= 3;
-				cnt++;
-			}
-			else if (N % 5 == 2) {
-				N -= 3;
-				cnt++;
-			}
-			else if (N % 5 == 3) {
-				if (N > 5) N -= 5;
-				else N -= 3;
-				cnt++;
-			}
-			else {
-				N -= 3;
-				cnt++;
-			}
-			i++;
-		}
-	}
-	if (i > 2000) printf("-1");
-	else printf("%d", cnt);
+	int A, B, V, up = 0, cnt = 0;
+	scanf("%d %d %d", &A, &B, &V);
+	if ((V - B) % (A - B) == 0) cnt = (V - B) / (A - B);
+	else cnt = (V - B) / (A - B) + 1;
+	printf("%d", cnt);
 }
