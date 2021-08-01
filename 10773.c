@@ -18,11 +18,7 @@ void push(NODE* p, int e) {
 	p->next = q;
 }
 void pop(NODE* p) {
-	NODE* q = NULL;
-	getNode(&q);
-	q = p;
-	p = p->next;
-	q->next = (q->next)->next;
+	p->next = (p->next)->next;
 }
 int S(NODE* p) {
 	NODE* q = p->next;
