@@ -2,42 +2,31 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-typedef struct NODE {
-	char left, right;
-}NODE;
-NODE tree[26];
-void preorder(char root) {
-	if (root == '.') return;
-	printf("%c", root);
-	preorder(tree[root].left);
-	preorder(tree[root].right);
-}
-void inorder(char root) {
-	if (root == '.') return;
-	inorder(tree[root].left);
-	printf("%c", root);
-	inorder(tree[root].right);
-}
-void postorder(char root) {
-	if (root == '.') return;
-	postorder(tree[root].left);
-	postorder(tree[root].right);
-	printf("%c", root);
-}
 int main() {
-	int N;
-	char x, y, z;
-	scanf("%d", &N);
-	getchar();
-	for (int i = 0; i < N; i++) {
-		scanf("%c %c %c", &x, &y, &z);
-		getchar();
-		tree[x].left = y;
-		tree[x].right = z;
+	int t, N, M, x[100];
+	scanf("%d", &t);
+	for (int i = 0; i < t; i++) {
+		int cnt = 1, front = 0, max = 0;
+		scanf("%d %d", &N, &M);
+		for (int j = 0; j < N; j++) {
+			scanf("%d", &x[j]);
+		}
+		while (1) {
+			for (int k = 0; k < N; k++) {
+				if (max < x[k]) {
+					max = x[k];
+				}
+			}
+			while (x[front] != max) {
+				front = (front + 1) % N;
+			}
+			if (front == M) {
+				break;
+			}
+			x[front] = 0;
+			max = 0;
+			cnt++;
+		}
+		printf("%d\n", cnt);
 	}
-	preorder('A');
-	printf("\n");
-	inorder('A');
-	printf("\n");
-	postorder('A');
 }
